@@ -1,6 +1,0 @@
-devel_space: /home/clbot/git/clbot/ros/devel
-install: false
-install_space: /home/clbot/git/clbot/ros/install
-profile: default
-source_space: /home/clbot/git/clbot/ros/src
-workspace: /home/clbot/git/clbot/ros

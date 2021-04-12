@@ -1,0 +1,68 @@
+<!-- launch file for differential drive package for clbot -->
+
+<launch>
+
+<!--<include file="$(find rplidar_ros)/launch/rplidar.launch" /> -->
+
+<node name="keyboard" pkg="clbot_control" type="keyboard_listener.py" />
+
+<param name="ticks_meter" value="14705.88"/> <!--number of encoder ticks in one meter. depends on wheel size-->
+<!--param name="vel_threshold" value="1.0"/-->
+
+<node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors" >
+
+    <remap from="twist" to="cmd_vel"/>
+    <param name="rate" value="10"/>
+    <param name="base_width" value="0.175"/> 
+    <!--width between two wheels redo param correctly here-->
+
+    
+</node>
+
+
+<node pkg="differential_drive" type="diff_tf.py" name="diff_tf">
+
+    <param name="base_width" value = "0.175"/>
+    
+    <!-- param name="encoder_min, value="-32768" --> <!-- min val of int16 from teensy encoder ticks-->
+    <!-- param name="encoder_max", value="32768" --> 
+
+    <!-- wheel_low_warp, and wheel_high_wrap -->
+</node>
+
+ 
+</launch>
+
+
+
+<!-- diff_tf Provides the base_link transform from odometry data to where robot is (like dead reckoning) -->
+
+<!--
+Publishes on: 
+    /odom (nav_msgs/Odometry)
+    /tf (Broadcast transform between odometry frame and robot base_link)
+
+Subscribes to:
+    /lwheel (std_msgs/Int16) 
+    /rwheel (std_msgs/Int16) 
+        Output from left and right wheel encoders. The hardware is expecte to count pulses from the wheel encoders, and provide the total number of pulses since the start of tracking
+
+Parameters: Refer to differential_drive ROS documentation
+
+-->
+
+<!-- Twist To Motors translates a twist message into velocity target for the two motors -->
+
+<!-- 
+Publishes on: /lwheel_vtarget (std_msgs/Float32) 
+              /rwheel_vtarget
+
+Subscribes to: /twist (geometry_msgs/Twist)
+
+Parameters: ~base_width (float, distance between robots wheels in meters, default = 0.1)
+            ~rate (int, rate that the output velocity target messages will be published, default = 50
+            ~timeout_ticks (int, number of velocity target messsages that will be published after last twist message is received, default = 2)
+
+-->
+
+

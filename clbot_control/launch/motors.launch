@@ -1,0 +1,5 @@
+<!-- launch file for differential drive package for clbot -->
+
+<launch>
+    <node name="motors" pkg="clbot_control" type="motor_controller.py" />
+</launch>

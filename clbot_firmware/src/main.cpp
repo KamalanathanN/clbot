@@ -15,10 +15,10 @@
 #define LEFT_PWM_PIN 2
 #define LEFT_MOTOR_EN1 3
 #define LEFT_MOTOR_EN2 4
-#define LEFT_ENCODER_PIN1 6
-#define LEFT_ENCODER_PIN2 5
-#define RIGHT_ENCODER_PIN1 7
-#define RIGHT_ENCODER_PIN2 8
+#define LEFT_ENCODER_PIN1 5
+#define LEFT_ENCODER_PIN2 6
+#define RIGHT_ENCODER_PIN1 8
+#define RIGHT_ENCODER_PIN2 7
 #define BAUD_RATE 115200                                    
 // PID params
 #define KP 600
